@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import random
+
+
+def func(x, y):
+    if y > x - 2:
+        return 1
+    else:
+        p_switch = 0
+        p_stick = 0
+        correct_doors = [random.randint(1, x) for _ in range(y)]
+        array = [0] * (x + 1)
+        for num in correct_doors:
+            array[num] = 1
+        wrong_doors = [index for index, value in enumerate(array) if value == 0 and index != 0]
+        for _ in range(10000):
+            chosen = random.randint(1, x)
+            index = random.randint(0, len(wrong_doors) - 1)
+            opened = wrong_doors[index]
+            while opened == chosen:
+                index = random.randint(0, len(wrong_doors) - 1)
+                opened = wrong_doors[index]
+            final = random.randint(1, x)
+            while final == chosen or final == opened:
+                final = random.randint(1, x)
+            if array[final] == 1:
+                p_switch += 1
+            if array[chosen] == 1:
+                p_stick += 1
+        p_switch /= 100
+        p_stick /= 100
+        if p_stick == 0:
+            return 1
+        return p_switch / p_stick
+    
+    
+    
+print(func(50, 15))
+print(func(50, 15))
