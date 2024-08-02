@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
+import validator from "validator";
+
 const Schema = mongoose.Schema;
 
 /* Creating a new schema for the user model. */
-const userSchema = new Schema({
+const customerSchema = new Schema({
     firstname: {
         type: String,
         required: true,
@@ -12,29 +13,17 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    // userID: {
-    //     type: String,
-    //     required: true,
-    // },
     email: {
         type: String,
         required: true,   
     },
-    password: {
+    pin: {
         type: String,
         required: true,
-    },
-    gstno: {
-        type: String,
-        required: true,
-    },
-    shopname: {
-        type: String,
-        required: true,
-    },
-    shopaddress: {
-        type: String,
-        required: true,
+        trim: true,
+        minLength: 4,
+        maxLength: 4,
+        validator: [validator.isNumeric, "Only Numaric PINs are allowed"]
     },
     phonenumber : {
         type : String,
@@ -43,13 +32,6 @@ const userSchema = new Schema({
 
 });
 
-userSchema.pre('save', async function (next) {
-    if (this.isModified('password') || this.isNew) {
-      const hashedPassword = await bcrypt.hash(this.password, 10);
-      this.password = hashedPassword;
-    }
-    next();
-  });
 
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Customer", customerSchema);
