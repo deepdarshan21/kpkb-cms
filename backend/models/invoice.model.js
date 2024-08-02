@@ -12,6 +12,10 @@ const invoiceSchema = new Schema({
     type: Number,
     required: true,
   },
+  customerId: {
+    type : mongoose.Schema.Types.ObjectId, ref: 'Customer',
+    required: true,
+  },
   customerName: {
     type: String,
     required: true,

@@ -187,6 +187,7 @@ const addInvoice = async (req, res) => {
   const addInvoice = new Invoice({
     userID: req.body.userID,
     invoiceID: req.body.invoiceID,
+    customerId: req.body.customerId,
     customerName: req.body.customerName,
     phoneNo: req.body.phoneNo,
     customerEmail: req.body.customerEmail,
