@@ -38,6 +38,10 @@ const customerSchema = new Schema({
         type: [ {type : mongoose.Schema.Types.ObjectId, ref: 'Invoice'} ],
         default: []
     },
+    wellfareNo: {
+        type: String,
+        required: true,
+    }
 
 });
 
