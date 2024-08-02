@@ -1,35 +1,44 @@
 const mongoose = require("mongoose");
+import validator from "validator";
 
 const Schema = mongoose.Schema;
 
-/* Creating a new schema for the customer model. */
+/* Creating a new schema for the user model. */
 const customerSchema = new Schema({
-  userID: { // This is userID of the shopkeeper
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  phoneNo: {
-    type: String,
-    required: false,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  creditAmount: {
-    type: Number,
-    required: false,
-  },
+    firstname: {
+        type: String,
+        required: true,
+    },
+    lastname: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,   
+    },
+    pin: {
+        type: String,
+        required: true,
+        trim: true,
+        minLength: 4,
+        maxLength: 4,
+        validator: [validator.isNumeric, "Only Numaric PINs are allowed"]
+    },
+    phonenumber : {
+        type : String,
+        required: true,
+    },
+    creditAmount: {
+        type: Number,
+        required: false,
+    },
+    
+    invoiceList: {
+        type: [ {type : mongoose.Schema.Types.ObjectId, ref: 'Invoice'} ],
+        default: []
+    },
 
-  invoiceList: {
-    type: [ {type : mongoose.Schema.Types.ObjectId, ref: 'Invoice'} ],
-    default: []
-  },
-  
 });
 
 
