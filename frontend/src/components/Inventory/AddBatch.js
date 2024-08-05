@@ -112,7 +112,7 @@ const AddBatchDialog = ({ isVisible, onCancel, element,handlePageUpdate, }) => {
                               } /></td>
             </tr>
             <tr>
-              <td><input type="date" id="expiryDate" required autocomplete="one-time-code" placeholder="expiryDate" value={itemData.expiryDate} name="expiryDate" onChange={(e) =>
+              <td><input type="date" id="expiryDate" required placeholder="Expiry Date" value={itemData.expiryDate} name="expiryDate" onChange={(e) =>
                                 handleInputChange(e.target.name, e.target.value)
                               }/></td>
             </tr>
