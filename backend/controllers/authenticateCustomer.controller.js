@@ -13,10 +13,10 @@ const authenticateCustomer = async (req, res) => {
             return res.status(404).json({ error: 'User Not Exits' });
         }
         
-        if(customer.pin == customer){
-            return res.status(200).json("customer")
+        if(customer.pin == pin){
+            return res.status(200).json(customer);
         } else {
-            return res.status(401).json("Incorrect Pin")
+            return res.status(401).json("Incorrect Pin");
         }
     } catch (error){
         console.log(error);

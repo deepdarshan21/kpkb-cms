@@ -1,7 +1,7 @@
 
 const Customer = require('../models/customer.model');
 
-const updateCustomerDetails = async (res, req) => {
+const updateCustomerDetails = async (req, res) => {
     console.log("Check 1");
     try {
         const { 
@@ -16,7 +16,7 @@ const updateCustomerDetails = async (res, req) => {
         } = req.body;
 
         // find customer if already exits
-        const customer = await Customer.findOne({ wellfareNo });
+        let customer = await Customer.findOne({ wellfareNo });
 
         if (!customer) {
             customer = new Customer({
