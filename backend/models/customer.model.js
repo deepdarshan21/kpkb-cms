@@ -1,5 +1,5 @@
+const validator = require('validator');
 const mongoose = require("mongoose");
-import validator from "validator";
 
 const Schema = mongoose.Schema;
 
