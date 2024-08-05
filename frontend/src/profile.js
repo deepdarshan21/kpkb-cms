@@ -102,7 +102,7 @@ function Profile() {
             type="text"
             autocomplete="one-time-code"
             name="shopname"
-            value={formData.shopname || ""}
+            value={formData?.shopname || ""}
             onChange={handleInputChange}
             readOnly={!editable}
           />
@@ -111,7 +111,7 @@ function Profile() {
             type="text"
             autocomplete="one-time-code"
             name="firstname"
-            value={formData.firstname || ""}
+            value={formData?.firstname || ""}
             onChange={handleInputChange}
             readOnly={!editable}
           />
@@ -119,7 +119,7 @@ function Profile() {
             type="text"
             autocomplete="one-time-code"
             name="lastname"
-            value={formData.lastname || ""}
+            value={formData?.lastname || ""}
             onChange={handleInputChange}
             readOnly={!editable}
           />
@@ -128,7 +128,7 @@ function Profile() {
             type="text"
             autocomplete="one-time-code"
             name="shopaddress"
-            value={formData.shopaddress || ""}
+            value={formData?.shopaddress || ""}
             onChange={handleInputChange}
             readOnly={!editable}
           />
@@ -137,24 +137,24 @@ function Profile() {
             type="text"
             autocomplete="one-time-code"
             name="gstno"
-            value={formData.gstno || ""}
+            value={formData?.gstno || ""}
             onChange={handleInputChange}
             readOnly={!editable}
           />
-          <h4>EMAIL:</h4>
+          {/* <h4>EMAIL:</h4>
           <input
             type="text"
             autocomplete="one-time-code"
             name="email"
             value={userData.email || ""}
             readOnly
-          />
+          /> */}
           <h4>PHONE NO:</h4>
           <input
             type="text"
             autocomplete="one-time-code"
             name="phone"
-            value={formData.phonenumber || ""}
+            value={formData?.phonenumber || ""}
             onChange={handleInputChange}
             readOnly={!editable}
           />

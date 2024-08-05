@@ -1,27 +1,30 @@
 import React from 'react';
 import './Invoice.css';
-import AddNewInvoice from './components/Invoice/AddInvoice';
+import ReactLoading from "react-loading";
 import AuthContext from "./AuthContext";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import Navbar from './Navbar';
 import './CreateCard.css';
 
+const initialState = {
+    welfareId: '',
+    firstName: '',
+    lastName: '',
+    payLevel: '',
+    pin: '',
+    phoneNumber: ''
+}
+
 const CreateCard = () => {
 
-    const [formData, setFormData] = React.useState({
-        welfareId: '',
-        firstName: '',
-        lastName: '',
-        payLevel: '',
-        pin: '',
-        phoneNumber: ''
-    });
+    const [formData, setFormData] = React.useState(initialState);
+    const [loading, setLoading] = React.useState(false)
   
     const auth = useContext(AuthContext);
-    // if (!auth.user) {
-    //   return <Navigate to="/" replace />;
-    // }
+    if (!auth.user) {
+      return <Navigate to="/" replace />;
+    }
 
    
 
@@ -72,6 +75,7 @@ const CreateCard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
         // Add your form submission logic here
         // console.log('Form submitted:', formData);
         const myHeaders = new Headers();
@@ -96,9 +100,13 @@ const CreateCard = () => {
             .then((response) => response.json())
             .then((data) => {
                 //   setAllProducts(data);
+                alert("Card Created Successfully")
+                setFormData(initialState)
                 console.log(data);
             })
+            .finally(() => setLoading(false))
             .catch((err) => console.log(err));
+            
     };
 
     const handleNumberInputEvents = (e) => {
@@ -107,7 +115,13 @@ const CreateCard = () => {
         }
     };
     return (
-        <div><Navbar/>
+        <div>
+            {loading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#000" height={50} width={50} />
+        </div>
+      )}
+            <Navbar/>
     <div className="wrapper">
       
       <form className="form-container" onSubmit={handleSubmit}>

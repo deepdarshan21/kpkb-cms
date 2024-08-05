@@ -149,11 +149,11 @@ const Navbar = () => {
           <Tooltip title="Settings">
               <SettingsIcon style={{ color: "#fff", fontSize: iconSize, marginRight: '15px' }} />
           </Tooltip> */}
-          <Tooltip title="Profile">
+          {/* <Tooltip title="Profile">
             <Link to="/profile" style={{ color: 'inherit', textDecoration: 'none' }}>
               <AccountCircleIcon style={{ color: "#fff", fontSize: iconSize, marginRight: '15px' }} />
             </Link>
-          </Tooltip>
+          </Tooltip> */}
           <Tooltip title="Logout">
             <button onClick={handleSignout} style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
               <LogoutIcon style={{ color: "#fff", fontSize: iconSize }} />
