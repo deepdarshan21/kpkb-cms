@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const { PDFDocument,rgb } = require('pdf-lib');
 const pdf = require('html-pdf');
 const pdfTemplate = require('./utils/pdfTemplate');
-const User = require("./models/user.model")
+const User = require("./models/canteen.model")
 
 const inventoryRouter = require("./routes/inventory.route");
 const invoiceRouter = require("./routes/invoice.route");
@@ -17,7 +17,7 @@ const verifyRouter = require("./routes/verify.route")
 const forgotRouter = require("./routes/forgot.route")
 const userRouter = require("./routes/user.route")
 const contactRouter = require("./routes/contact.route")
-//const {User} = require("./models/user.model")
+//const {User} = require("./models/canteen.model")
 // const registerRouter = require("./routes/register.route");
 
 const app = express();

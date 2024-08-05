@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/canteen.model");
 const bcrypt = require('bcrypt');
 
 const changeUser = async (req, res) => {

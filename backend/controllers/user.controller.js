@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/canteen.model");
 
 const getUserData = async (req, res) => {
     // console.log(req.params);

@@ -27,7 +27,7 @@
  * @returns {string} The HTML template for the invoice.
  */
   
-const User = require('../models/user.model');
+const User = require('../models/canteen.model');
 const formatDate = (date) => {
     const newDate= new Date(date);
     const options = {

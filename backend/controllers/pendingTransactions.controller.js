@@ -1,7 +1,7 @@
 const Customer = require("../models/customer.model");
 const Supplier = require("../models/supplier.model");
 const Invoice = require("../models/invoice.model");
-const User = require("../models/user.model");
+const User = require("../models/canteen.model");
 // const notifyCustomerController = require("./notifyCustomer.controller");
 const pdf = require('html-pdf');
 const pdfTemplate = require('../utils/pdfTemplate');

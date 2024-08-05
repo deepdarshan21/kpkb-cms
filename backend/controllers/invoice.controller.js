@@ -1,6 +1,6 @@
 const Invoice = require("../models/invoice.model");
 const Customer = require("../models/customer.model");
-const User = require("../models/user.model")
+const User = require("../models/canteen.model")
 const pdf = require('html-pdf');
 const pdfTemplate = require('../utils/pdfTemplate');
 // Add Post
