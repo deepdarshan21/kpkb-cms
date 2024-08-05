@@ -107,8 +107,9 @@ const CreateCard = () => {
         }
     };
     return (
+        <div><Navbar/>
     <div className="wrapper">
-      <Navbar/>
+      
       <form className="form-container" onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="welfareId">Welfare ID:</label>
@@ -189,6 +190,7 @@ const CreateCard = () => {
 
             <button type="submit" className="submit-button">Submit</button>
         </form>
+    </div>
     </div>
   );
 }

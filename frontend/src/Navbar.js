@@ -52,18 +52,14 @@ const Navbar = () => {
         return 'Invoice';
       case '/inventory':
         return 'Inventory';
-      case '/pendingTransactions':
-        return 'Pending Transactions';
       case '/TransactionHistory':
         return 'Transaction History';
       case '/Reports':
         return 'Reports';
-      case '/FAQ':
-        return 'FAQs';
-      case '/contactUs':
-        return 'Contact Us';
       case '/profile':
         return 'Profile';
+      case '/createCard':
+        return 'Create New Card'
       default:
         return '';
     }
@@ -109,12 +105,12 @@ const Navbar = () => {
                 <strong>Create New Card</strong>
               </Link>
             </p>
-            <p className={location.pathname === "/pendingTransactions" ? "active" : ""}>
+            {/* <p className={location.pathname === "/pendingTransactions" ? "active" : ""}>
               <Link to="/pendingTransactions" style={{ display: 'flex', alignItems: 'center', color: 'white', textDecoration: 'none' }}>
                 <PendingTransactionsIcon style={{ marginRight: '5px' }} />
                 <strong>Pending Transactions</strong>
               </Link>
-            </p>
+            </p> */}
             <p className={location.pathname === "/TransactionHistory" ? "active" : ""}>
               <Link to="/TransactionHistory" style={{ display: 'flex', alignItems: 'center', color: 'white', textDecoration: 'none' }}>
                 <HistoryIcon style={{ marginRight: '5px' }} />
@@ -142,7 +138,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="top-panel" style={{ zIndex: 1 }}>
+      <div className="top-panel">
         <div style={{ textAlign: "left", left: 10, marginLeft: 10, marginTop: 25 }}>
           <h1 style={{ color: "#fff", fontSize: 40 }}>{getPageTitle()}</h1>
         </div>
