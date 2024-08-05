@@ -187,18 +187,20 @@ const AddNewInvoice = () => {
   const handleGenerateBill = async () => {
     try {
       setShowLoading(true);
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phonePattern = /^\d{10}$/;
       if (!invoiceData.customerName) {
         alert("Please fill Customer Name");
         return;
-      } else if (!invoiceData.customerEmail) {
-        alert("Please fill Customer Email");
-        return;
-      } else if (!emailRegex.test(invoiceData.customerEmail)) {
-        alert("Please enter a valid email address");
-        return;
-      } else if (!invoiceData.phoneNo) {
+      } 
+      // else if (!invoiceData.customerEmail) {
+      //   alert("Please fill Customer Email");
+      //   return;
+      // } else if (!emailRegex.test(invoiceData.customerEmail)) {
+      //   alert("Please enter a valid email address");
+      //   return;
+      // } 
+      else if (!invoiceData.phoneNo) {
         alert("Please fill phone number");
         return;
       } else if (!phonePattern.test(invoiceData.phoneNo)) {
@@ -228,7 +230,7 @@ const AddNewInvoice = () => {
   };
 
   const addInvoice = () => {
-    if (!invoiceData.customerEmail || !invoiceData.customerName || !invoiceData.itemList) {
+    if ( !invoiceData.customerName || !invoiceData.itemList) {
       alert("Please enter all the details.");
       return; // Stop further execution
     }
@@ -236,13 +238,13 @@ const AddNewInvoice = () => {
       invoiceData: invoiceData,
       userID: authContext.user,
     };
-    fetch("http://localhost:5050/api/invoice/sendmail", {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(requestData),
-    })
+    // fetch("http://localhost:5050/api/invoice/sendmail", {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(requestData),
+    // })
 
     fetch("http://localhost:5050/api/invoice/add", {
       method: "POST",

@@ -163,11 +163,11 @@ const sendInvoiceMail = async(req,res) => {
   };
   // console.log(requestData);
   try{
-  const pdfBuffer = await generatePDFBuffer(pdfTemplate(requestData));
-  // console.log(pdfBuffer);
-  await sendInvoiceMailController(requestData.invoiceData.customerEmail, "Billing 360", requestData.userData.shopname,  requestData.invoiceData.invoiceID, requestData.userData.email, pdfBuffer, requestData.userData.shopaddress);
-  // await notifyCustomerController(requestData.invoiceData.customerEmail, 'Billing 360', requestData.userData.shopname, requestData.userData.email, requestData.userData.shopaddress, body, requestData.invoiceData.totalAmount, pdfBuffer);
-  res.status(200).send(pdfBuffer);   
+    const pdfBuffer = await generatePDFBuffer(pdfTemplate(requestData));
+    // console.log(pdfBuffer);
+    await sendInvoiceMailController(requestData.invoiceData.customerEmail, "Billing 360", requestData.userData.shopname,  requestData.invoiceData.invoiceID, requestData.userData.email, pdfBuffer, requestData.userData.shopaddress);
+    // await notifyCustomerController(requestData.invoiceData.customerEmail, 'Billing 360', requestData.userData.shopname, requestData.userData.email, requestData.userData.shopaddress, body, requestData.invoiceData.totalAmount, pdfBuffer);
+    res.status(200).send(pdfBuffer);   
   }
   catch(error){
     console.log(error);
@@ -187,7 +187,7 @@ const addInvoice = async (req, res) => {
   const addInvoice = new Invoice({
     userID: req.body.userID,
     invoiceID: req.body.invoiceID,
-    customerId: req.body.customerId,
+    customerId: req.body.cardNo,
     customerName: req.body.customerName,
     phoneNo: req.body.phoneNo,
     customerEmail: req.body.customerEmail,

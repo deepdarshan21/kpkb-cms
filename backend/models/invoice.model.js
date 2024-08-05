@@ -13,8 +13,8 @@ const invoiceSchema = new Schema({
     required: true,
   },
   customerId: {
-    type : mongoose.Schema.Types.ObjectId, ref: 'Customer',
-    required: true,
+    type : String,
+    required: false,
   },
   customerName: {
     type: String,
@@ -26,7 +26,7 @@ const invoiceSchema = new Schema({
   },
   customerEmail: {
     type: String,
-    required: true,
+    required: false,
   },
   totalAmount: {
     type: Number,
