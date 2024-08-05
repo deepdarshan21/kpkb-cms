@@ -82,7 +82,7 @@ const Navbar = () => {
               <p>
                 {userData.shopname}
                 <br />
-                {userData.gstno}
+                <p style={{fontSize:12}}>{userData.gstno}</p>
               </p>
             </div>
           </div>

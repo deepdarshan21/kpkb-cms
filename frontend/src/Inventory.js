@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Inventory.css';
 import { Link, Navigate } from "react-router-dom";
 import AddItemDialog from './components/Inventory/AddProduct';
@@ -13,8 +13,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import Tooltip from '@mui/material/Tooltip';
 import SearchIcon from '@mui/icons-material/Search';
-const Inventory = () =>
-{
+const Inventory = () => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortBy, setSortBy] = useState('');
   const [isAddItemDialogVisible, setAddItemDialogVisibility] = useState(false);
@@ -24,8 +23,8 @@ const Inventory = () =>
   const [products, setAllProducts] = useState([]);
   const [updatePage, setUpdatePage] = useState(true);
   const [updateProduct, setUpdateProduct] = useState([]);
-  const[addBatch,setAddBatch]=useState([]);
-  const[updateBatch,setUpdateBatch]=useState([]);
+  const [addBatch, setAddBatch] = useState([]);
+  const [updateBatch, setUpdateBatch] = useState([]);
   const [itemName, setItemName] = useState();
   const [searchInput, setSearchInput] = useState('');
   const authContext = useContext(AuthContext);
@@ -62,7 +61,7 @@ const Inventory = () =>
   const updateProductModalSetting = (selectedProductData) => {
     // console.log("Clicked: edit");
     setUpdateProduct(selectedProductData);
-    toggleUpdateItemDialog ();
+    toggleUpdateItemDialog();
   };
   const handlePageUpdate = () => {
     setUpdatePage(!updatePage);
@@ -72,12 +71,12 @@ const Inventory = () =>
     // console.log("Clicked:add batch");
     // console.log(selectedProductData);
     setAddBatch(selectedProductData._id);
-    toggleAddBatchDialog ();
+    toggleAddBatchDialog();
   };
   const viewBatchModalSetting = (selectedProductData) => {
     // console.log("Clicked:update batch");
     setUpdateBatch(selectedProductData);
-    toggleViewBatchDialog ();
+    toggleViewBatchDialog();
   };
   const getRowStyle = (expiryDate) => {
     const today = new Date();
@@ -89,7 +88,7 @@ const Inventory = () =>
     } else if (daysUntilExpiration <= 3) {
       // Item will expire soon
       return { backgroundColor: '#FFF59D' };
-    } 
+    }
     else {
       // Item is not expiring soon and not expired
       return { backgroundColor: '#E0FFDB' };
@@ -104,46 +103,46 @@ const Inventory = () =>
   }, [updatePage]);
   const fetchProductsData = () => {
     fetch(`http://localhost:5050/api/inventory/get/${authContext.user}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setAllProducts(data);
-      // console.log(data);
-    })
-    .catch((err) => console.log(err));
+      .then((response) => response.json())
+      .then((data) => {
+        setAllProducts(data);
+        // console.log(data);
+      })
+      .catch((err) => console.log(err));
 
-};
-const fetchSearchData = () => {
-  fetch(`http://localhost:5050/api/inventory/search/${authContext.user}?itemName=${itemName}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setAllProducts(data);
-      // console.log(data);
-    })
-    .catch((err) => console.log(err));
-};
-const handleItemName = (e) => {
-  setItemName(e.target.value);
-  fetchSearchData();
-};
+  };
+  const fetchSearchData = () => {
+    fetch(`http://localhost:5050/api/inventory/search/${authContext.user}?itemName=${itemName}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAllProducts(data);
+        // console.log(data);
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleItemName = (e) => {
+    setItemName(e.target.value);
+    fetchSearchData();
+  };
 
-const deleteItem = (id) => {
-  console.log("Product ID: ", id);
-  fetch(`http://localhost:5050/api/inventory/delete/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setUpdatePage(!updatePage);
-    });
-};
-const sortProducts = (heading) => {
-  const sortedProducts = [...products];
-  let newSortDirection;
+  const deleteItem = (id) => {
+    console.log("Product ID: ", id);
+    fetch(`http://localhost:5050/api/inventory/delete/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUpdatePage(!updatePage);
+      });
+  };
+  const sortProducts = (heading) => {
+    const sortedProducts = [...products];
+    let newSortDirection;
 
-  // if (sortBy === heading) {
-  //   // If already sorted by the same heading, reverse the order
-  //   sortedProducts.reverse();
-  //   // Toggle the direction of the arrow
-  //   newSortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-  // } else {
+    // if (sortBy === heading) {
+    //   // If already sorted by the same heading, reverse the order
+    //   sortedProducts.reverse();
+    //   // Toggle the direction of the arrow
+    //   newSortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    // } else {
     // Sort the products based on the selected heading
     if (sortBy === heading) {
       // If already sorted by the same heading, toggle the direction
@@ -156,7 +155,7 @@ const sortProducts = (heading) => {
           valueA = a[heading];
           valueB = b[heading];
         }
-        
+
         if (valueA < valueB) {
           return sortDirection === 'asc' ? -1 : 1;
         }
@@ -178,7 +177,7 @@ const sortProducts = (heading) => {
           valueA = a[heading];
           valueB = b[heading];
         }
-        
+
         if (sortDirection === 'asc') {
           if (valueA < valueB) {
             return -1;
@@ -199,180 +198,180 @@ const sortProducts = (heading) => {
       // Toggle the direction
       newSortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     }
-    
-  // Update state variables
-  setAllProducts(sortedProducts);
-  setSortBy(heading); // Update the state to track the selected heading
-  setSortDirection(newSortDirection); // Update the arrow direction
-};
+
+    // Update state variables
+    setAllProducts(sortedProducts);
+    setSortBy(heading); // Update the state to track the selected heading
+    setSortDirection(newSortDirection); // Update the arrow direction
+  };
   const auth = useContext(AuthContext);
-  // if (!auth.user) {
-  //   return <Navigate to="/" replace />;
-  // }
-        return (
-            <div className="Inventory">
-               <Navbar/>
-  <div className="main-container">
-    <div className="add-button-container">
-      <button className="add-item-button" onClick={toggleAddItemDialog}>
-        <strong> Add New Item </strong>
-      </button>
-    </div>
-    <AddItemDialog
-        isVisible={isAddItemDialogVisible}
-        
-        onCancel={toggleAddItemDialog}
-        handlePageUpdate={handlePageUpdate}
-      />
-    <UpdateItemDialog
-    isVisible={isUpdateItemDialogVisible}
-    onCancel={toggleUpdateItemDialog}
-    element={updateProduct}
-    handlePageUpdate = {handlePageUpdate}
-    /> 
-    <AddBatchDialog
-    isVisible={isAddBatchDialogVisible}
-    onCancel={toggleAddBatchDialog}
-    element={addBatch}
-    handlePageUpdate = {handlePageUpdate}
-    /> 
-    <ViewBatchDialog
-    isVisible={isViewBatchDialogVisible}
-    onCancel={toggleViewBatchDialog}
-    batches={updateBatch.batchList}
-    id = {updateBatch._id}
-    handlePageUpdate = {handlePageUpdate}
-    /> 
-    <div className="top">
-      <div className="search-bar-container">
-        <input type="text" className="search-bar" placeholder="Search"
-        style={{ fontFamily: 'Libre Baskerville' }}
-        // value={itemName}
-        // onChange={handleItemName}
-        value={searchInput}
-        onChange={handleSearchInputChange}
-        
+  if (!auth.user) {
+    return <Navigate to="/" replace />;
+  }
+  return (
+    <div className="Inventory">
+      <Navbar />
+      <div className="main-container">
+        <div className="add-button-container">
+          <button className="add-item-button" onClick={toggleAddItemDialog}>
+            <strong> Add New Item </strong>
+          </button>
+        </div>
+        <AddItemDialog
+          isVisible={isAddItemDialogVisible}
+
+          onCancel={toggleAddItemDialog}
+          handlePageUpdate={handlePageUpdate}
         />
-     <SearchIcon className="search-icon" />
-        {/* <div className="circle" /> */}
-      </div>
-    </div>
-    <table id="inventoryTable">
-        <thead>
-        <tr className="headers">
-        <th>
-  ITEM ID
-  <button onClick={() => sortProducts('itemID')}>
-    {/* Arrow icon */}
-    {sortBy === 'itemID' ? (
-    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
-  ) : (
-    <>&darr;</>
-  )}
-  </button>
-</th>
-<th>
-  ITEM NAME
-  <button onClick={() => sortProducts('itemName')}>
-    {/* Arrow icon */}
-    {sortBy === 'itemName' ?(
-    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
-  ) : (
-    <>&darr;</>
-  )}
-  </button>
-</th>
-<th>
-  SALE PRICE
-  <button onClick={() => sortProducts('salePrice')}>
-    {/* Arrow icon */}
-    {sortBy === 'salePrice' ? (
-    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
-  ) : (
-    <>&darr;</>
-  )}
-  </button>
-</th>
-<th>
-  COST PRICE
-  <button onClick={() => sortProducts('costPrice')}>
-    {/* Arrow icon */}
-    {sortBy === 'costPrice' ? (
-    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
-  ) : (
-    <>&darr;</>
-  )}
-  </button>
-</th>
-<th>
-  STOCK
-  <button onClick={() => sortProducts('quantity')}>
-    {/* Arrow icon */}
-    {sortBy === 'quantity' ?(
-    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
-  ) : (
-    <>&darr;</>
-  )}
-  </button>
-</th>
-<th>MORE ACTIONS</th>
-{/* <th>DELETE</th> */}
-          </tr>
-        </thead>
-        <tbody>
-        {filteredProducts.map((element, index) => (
-    /* {products && products.map((element, index) => { */
-      // return 
-      <tr
-      key={element._id}
-      style={{
-        ...getRowStyle(element.batchList[0]?.expiryDate),
-        marginBottom: '20px',
-        borderBottom: '4px solid white'
-      }}
-    >
-       <td style={{ padding: '15px 0' }}>{element.itemID}</td>
-  <td style={{ padding: '15px 0' }}>{element.itemName}</td>
-  <td style={{ padding: '15px 0' }}>{element.salePrice}</td>
-  <td style={{ padding: '15px 0' }}>{element.costPrice}</td>
-  <td style={{ padding: '15px 0' }}>{element.quantity}</td>
-          <td>
-            <span
-            className="action-button"
-              //className="text-green-700 cursor-pointer"
-              onClick={() => updateProductModalSetting(element)}
-            >
-              {/* EditItem{" "} */}
-              <Tooltip title='Edit Item'><ModeEditIcon/></Tooltip>
-              
-            </span>
-            <span
-            className="action-button"
-              //className="text-green-700 cursor-pointer"
-              onClick={() => addBatchModalSetting(element)}
-            >
-              <Tooltip title='Add Batch'><AddIcon/></Tooltip>
-            </span>
-            <span
-            className="action-button"
-              //className="text-green-700 cursor-pointer"
-              onClick={() => viewBatchModalSetting(element)}
-            >
-              {/* ViewBatch{" "} */}
-              <Tooltip title='View Batch'><ViewListIcon/></Tooltip>
-            </span>
-            <span className="action-button"
-            
-              //className="text-red-600 px-2 cursor-pointer"
-              //onClick={() => deleteItem(element._id)}
-            >
-            <Tooltip title='Delete Item'><DeleteIcon
-                  style={{ color: 'red', cursor: 'pointer' }}
-                  onClick={() => deleteItem(element._id)}
-                /></Tooltip>  
-            </span>
-            </td>
-            {/* <td> 
+        <UpdateItemDialog
+          isVisible={isUpdateItemDialogVisible}
+          onCancel={toggleUpdateItemDialog}
+          element={updateProduct}
+          handlePageUpdate={handlePageUpdate}
+        />
+        <AddBatchDialog
+          isVisible={isAddBatchDialogVisible}
+          onCancel={toggleAddBatchDialog}
+          element={addBatch}
+          handlePageUpdate={handlePageUpdate}
+        />
+        <ViewBatchDialog
+          isVisible={isViewBatchDialogVisible}
+          onCancel={toggleViewBatchDialog}
+          batches={updateBatch.batchList}
+          id={updateBatch._id}
+          handlePageUpdate={handlePageUpdate}
+        />
+        <div className="top">
+          <div className="search-bar-container">
+            <input type="text" className="search-bar" placeholder="Search"
+              style={{ fontFamily: 'Libre Baskerville' }}
+              // value={itemName}
+              // onChange={handleItemName}
+              value={searchInput}
+              onChange={handleSearchInputChange}
+
+            />
+            <SearchIcon className="search-icon" />
+            {/* <div className="circle" /> */}
+          </div>
+        </div>
+        <table id="inventoryTable">
+          <thead>
+            <tr className="headers">
+              <th>
+                ITEM ID
+                <button onClick={() => sortProducts('itemID')}>
+                  {/* Arrow icon */}
+                  {sortBy === 'itemID' ? (
+                    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
+                  ) : (
+                    <>&darr;</>
+                  )}
+                </button>
+              </th>
+              <th>
+                ITEM NAME
+                <button onClick={() => sortProducts('itemName')}>
+                  {/* Arrow icon */}
+                  {sortBy === 'itemName' ? (
+                    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
+                  ) : (
+                    <>&darr;</>
+                  )}
+                </button>
+              </th>
+              <th>
+                SALE PRICE
+                <button onClick={() => sortProducts('salePrice')}>
+                  {/* Arrow icon */}
+                  {sortBy === 'salePrice' ? (
+                    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
+                  ) : (
+                    <>&darr;</>
+                  )}
+                </button>
+              </th>
+              <th>
+                COST PRICE
+                <button onClick={() => sortProducts('costPrice')}>
+                  {/* Arrow icon */}
+                  {sortBy === 'costPrice' ? (
+                    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
+                  ) : (
+                    <>&darr;</>
+                  )}
+                </button>
+              </th>
+              <th>
+                STOCK
+                <button onClick={() => sortProducts('quantity')}>
+                  {/* Arrow icon */}
+                  {sortBy === 'quantity' ? (
+                    sortDirection === 'asc' ? <>&uarr;</> : <>&darr;</>
+                  ) : (
+                    <>&darr;</>
+                  )}
+                </button>
+              </th>
+              <th>MORE ACTIONS</th>
+              {/* <th>DELETE</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts.map((element, index) => (
+              /* {products && products.map((element, index) => { */
+              // return 
+              <tr
+                key={element._id}
+                style={{
+                  ...getRowStyle(element.batchList[0]?.expiryDate),
+                  marginBottom: '20px',
+                  borderBottom: '4px solid white'
+                }}
+              >
+                <td style={{ padding: '15px 0' }}>{element.itemID}</td>
+                <td style={{ padding: '15px 0' }}>{element.itemName}</td>
+                <td style={{ padding: '15px 0' }}>{element.salePrice}</td>
+                <td style={{ padding: '15px 0' }}>{element.costPrice}</td>
+                <td style={{ padding: '15px 0' }}>{element.quantity}</td>
+                <td>
+                  <span
+                    className="action-button"
+                    //className="text-green-700 cursor-pointer"
+                    onClick={() => updateProductModalSetting(element)}
+                  >
+                    {/* EditItem{" "} */}
+                    <Tooltip title='Edit Item'><ModeEditIcon /></Tooltip>
+
+                  </span>
+                  <span
+                    className="action-button"
+                    //className="text-green-700 cursor-pointer"
+                    onClick={() => addBatchModalSetting(element)}
+                  >
+                    <Tooltip title='Add Batch'><AddIcon /></Tooltip>
+                  </span>
+                  <span
+                    className="action-button"
+                    //className="text-green-700 cursor-pointer"
+                    onClick={() => viewBatchModalSetting(element)}
+                  >
+                    {/* ViewBatch{" "} */}
+                    <Tooltip title='View Batch'><ViewListIcon /></Tooltip>
+                  </span>
+                  <span className="action-button"
+
+                  //className="text-red-600 px-2 cursor-pointer"
+                  //onClick={() => deleteItem(element._id)}
+                  >
+                    <Tooltip title='Delete Item'><DeleteIcon
+                      style={{ color: 'red', cursor: 'pointer' }}
+                      onClick={() => deleteItem(element._id)}
+                    /></Tooltip>
+                  </span>
+                </td>
+                {/* <td> 
             <span
             
               //className="text-red-600 px-2 cursor-pointer"
@@ -384,16 +383,16 @@ const sortProducts = (heading) => {
                 />
             </span>
           </td>  */}
-        </tr>
-        ))}
-  </tbody>
-      </table>
-  </div>
-</div>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 
-    
-    
+
+
 }
 
 export default Inventory;// main inventory.js
