@@ -265,19 +265,23 @@ const AddNewInvoice = () => {
     setUpdatePage(false);
   }
 
+  // console.log(invoiceData)
+
   const generatePdf = async () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phonePattern = /^\d{10}$/;
     if (!invoiceData.customerName) {
       alert("Please fill Customer Name");
       return;
-    } else if (!invoiceData.customerEmail) {
-      alert("Please fill Customer Email");
-      return;
-    } else if (!emailRegex.test(invoiceData.customerEmail)) {
-      alert("Please enter a valid email address");
-      return;
-    } else if (!invoiceData.phoneNo) {
+    } 
+    // else if (!invoiceData.customerEmail) {
+    //   alert("Please fill Customer Email");
+    //   return;
+    // } else if (!emailRegex.test(invoiceData.customerEmail)) {
+    //   alert("Please enter a valid email address");
+    //   return;
+    // }
+     else if (!invoiceData.phoneNo) {
       alert("Please fill phone number");
       return;
     } else if (!phonePattern.test(invoiceData.phoneNo)) {
@@ -356,6 +360,7 @@ const AddNewInvoice = () => {
     // }
 
   }, [incInvoiceID, invoiceData.userID]);
+  console.log(invoiceData)
 
   useEffect(() => {
     fetchItemsData();
@@ -384,8 +389,8 @@ const AddNewInvoice = () => {
   const verifyCard = () => {
     const axios = require('axios');
     let data = JSON.stringify({
-      "wellfareNo": 1,
-      "pin": "9898"
+      "wellfareNo": cardNo,
+      "pin": pin
     });
 
     let config = {
@@ -411,62 +416,48 @@ const AddNewInvoice = () => {
     setError('');
     setData(null);
 
-    // Prepare the data and configuration for the API call
-    const requestData = JSON.stringify({
-      wellfareNo: cardNo,
-      pin: pin
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "wellfareNo": cardNo,
+      "pin": pin
     });
 
-    const config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:5050/api/customer/verify',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: requestData
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
     };
 
-    try {
-      // Make the API call
-      const response = await axios.request(config);
-      if (response.data && response.data.success) {
-        setData( {
-          wellfareNo: '001',
-          firstName: 'John',
-          lastName: 'Doe',
-          payLevel: 'Level 1',
-          number: '9876543210'
-        });
-      } else {
-        setError('Wrong Credentials');
-      }
-    } catch (error) {
-      console.log(error);
-      setError('Wrong Credentials');
-    }
-  };
-
-  const mockApiCall = (cardNo, pin) => {
-    // Mocking an API response
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (cardNo === '1234' && pin === '5678') {
-          resolve({
-            success: true,
-            data: {
-              wellfareNo: '001',
-              firstName: 'John',
-              lastName: 'Doe',
-              payLevel: 'Level 1',
-              number: '9876543210'
-            }
-          });
+    fetch("http://localhost:5050/api/customer/verify", requestOptions)
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
         } else {
-          resolve({ success: false });
+          setData(null)
+          alert('N/A')
         }
-      }, 1000);
-    });
+      })
+      .then((data) => {
+        //   setAllProducts(data);
+        if(data){
+          setData({
+            wellfareNo: data.wellfareNo,
+            firstName: data.firstname,
+            lastName: data.lastname,
+            payLevel: 'Level 7',
+            number: data.phonenumber
+          })
+          setInvoiceData({
+            ...invoiceData,
+            customerName: `${data.firstname + data.lastname}`,
+            phoneNo: data.phonenumber,
+          })
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
 

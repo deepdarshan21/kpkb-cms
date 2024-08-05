@@ -26,13 +26,16 @@ const Navbar = () => {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const [userData, setUserData] = useState({ firstname: '', lastname: '', email: '', password: '', gstno: '', shopname: '', shopaddress: '' });
-  const getUserData = () => {
-    setUserData(authContext.userData);
-  }
+
+
+  // const getUserData = useCallback(() => {
+  //   setUserData(authContext.userData);
+  // }) 
 
   useEffect(() => {
-    getUserData(); // Call getUserData on component mount and whenever authContext.user changes
-  }, [authContext.userData]);
+    if(authContext)
+    setUserData(authContext.userData); // Call getUserData on component mount and whenever authContext.user changes
+  }, [authContext]);
 
 
 

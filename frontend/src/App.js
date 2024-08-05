@@ -26,7 +26,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
 import { setSignout } from "./auth";
 import CreateCard from "./CreateCard.js";
@@ -35,7 +34,8 @@ const App = () => {
   const [user, setUser] = useState("");
   const [userData,setUserData]=useState({firstname: '', lastname: '', email: '', password: '', gstno: '', shopname: '', shopaddress: ''});
   const [loader, setLoader] = useState(true);
-  let myLoginUser = JSON.parse(localStorage.getItem("user"));
+  const [myLoginUser, setMyLoginUser] = useState(JSON.parse(localStorage.getItem("user")))
+  // let myLoginUser = JSON.parse(localStorage.getItem("user"));
   // console.log("USER: ", user);
 
   useEffect(() => {

@@ -73,7 +73,32 @@ const CreateCard = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Add your form submission logic here
-        console.log('Form submitted:', formData);
+        // console.log('Form submitted:', formData);
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "wellfareNo": formData.welfareId,
+            "firstname": formData.firstName,
+            "lastname": formData.lastName,
+            "pin": formData.pin,
+            "phonenumber": formData.phoneNumber,
+        });
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        fetch("http://localhost:5050/api/customer/add", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                //   setAllProducts(data);
+                console.log(data);
+            })
+            .catch((err) => console.log(err));
     };
 
     const handleNumberInputEvents = (e) => {
