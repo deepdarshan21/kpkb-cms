@@ -84,10 +84,10 @@ function Login() {
         .catch((error) => {
           console.log("Something went wrong ", error);
         });
-        setShowLoading(true);
-        //authCheck();
+      setShowLoading(true);
+      //authCheck();
     }
-    
+
   };
 
 
@@ -95,37 +95,37 @@ function Login() {
     e.preventDefault();
   };
 
-  
+
   return (
     <>
-    {showLoading && ( // Conditionally render loading component
-       <div className="loading-overlay">
-       <ReactLoading type="spin" color="#000" height={50} width={50} />
-     </div>
-    )}
-    <div className="parent-div" style={{overflowX:"hidden",overflowY:"hidden"}}>
-    <div className="left-div">
-  <div className="image-container">
-    <img
-      className="fit-pictureverify2"
-      src="Billing_2.jpeg"
-      alt="Billing360 Logo"
-    />
-  </div>
-  </div>
-      <div className="right-div" >
-        <div id="sign-up" >
+      {showLoading && ( // Conditionally render loading component
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#000" height={50} width={50} />
+        </div>
+      )}
+      <div className="parent-div" style={{ overflowX: "hidden", overflowY: "hidden" }}>
+        <div className="left-div">
+          <div className="image-container">
             <img
-            class="fit-picture"
+              className="fit-pictureverify2"
+              src="Billing_2.jpeg"
+              alt="Billing360 Logo"
+            />
+          </div>
+        </div>
+        <div className="right-div" >
+          <div id="sign-up">
+            <img
+              class="fit-picture"
               src="logo1.png"
-              //alt="Your Company"
+            //alt="Your Company"
             />
             <h2 className="logintext">
               Login to your account
             </h2>
 
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            {/* <input type="hidden" name="remember" defaultValue="true" /> */}
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+              {/* <input type="hidden" name="remember" defaultValue="true" /> */}
               <div>
                 <input
                   id="email-address"
@@ -154,23 +154,23 @@ function Login() {
                 />
               </div>
 
-            
-            <div id="center" > 
-            <br></br>
-            <button
-              type="submit"
-              id="btn1"
-              className="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
-              onClick={loginUser}
-            >
-              {/* <button
+
+              <div id="center" >
+                <br></br>
+                <button
+                  type="submit"
+                  id="btn1"
+                  className="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
+                  onClick={loginUser}
+                >
+                  {/* <button
                 type="submit"
                 id="btn1"
                 className="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 onClick={loginUser}
               > */}
-                Login
-              </button>
+                  Login
+                </button>
               </div>
               <br></br>
               <div className="text-sm" class="center">
@@ -188,26 +188,11 @@ function Login() {
                   <Link to="/register"> Register now </Link>
                 </span>
               </p>
-          </form>
-          <footer id="footer">
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <span>Billing 360 &copy; 2024 Copyright All Rights Reserved.</span>
-          </footer>
+            </form>
+
+          </div>
+
         </div>
-        
-      </div>
       </div>
     </>
   );

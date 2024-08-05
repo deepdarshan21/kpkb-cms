@@ -163,7 +163,7 @@ function Verification() {
           </form>
         </div>
         <footer id="footerverify">
-          <span>Billing 360 &copy; 2024 Copyright All Rights Reserved.</span>
+          <span>Rashtra Retail &copy; 2024 Copyright All Rights Reserved.</span>
         </footer>
       </div>
     </div>
