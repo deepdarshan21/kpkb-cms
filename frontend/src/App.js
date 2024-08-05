@@ -29,6 +29,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { setSignout } from "./auth";
+import CreateCard from "./CreateCard.js";
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -101,13 +102,13 @@ const App = () => {
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/invoice" element={<Invoice />} />
           <Route path="/profile" element={<Profile/>} />
-          <Route path="/createCard" element={<Dashboard />} />
-          <Route path="/FAQ" element={<FAQ/>} />
+          <Route path="/createCard" element={<CreateCard />} />
+          {/* <Route path="/FAQ" element={<FAQ/>} /> */}
           <Route
             path="/pendingTransactions"
             element={<PendingTransactions />}
           />
-          <Route path="/contactUs" element={<ContactUs />} />
+          {/* <Route path="/contactUs" element={<ContactUs />} /> */}
           <Route path="/TransactionHistory" element={<TransactionHistory />} />
           <Route path="/Reports" element={<Reports />} />
         </Routes>

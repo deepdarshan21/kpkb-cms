@@ -9,9 +9,9 @@ import Navbar from './Navbar';
 const Invoice = () => {
   
     const auth = useContext(AuthContext);
-    if (!auth.user) {
-      return <Navigate to="/" replace />;
-    }
+    // if (!auth.user) {
+    //   return <Navigate to="/" replace />;
+    // }
     return (
     <div className="Invoice">
       <Navbar/>

@@ -206,9 +206,9 @@ const sortProducts = (heading) => {
   setSortDirection(newSortDirection); // Update the arrow direction
 };
   const auth = useContext(AuthContext);
-  if (!auth.user) {
-    return <Navigate to="/" replace />;
-  }
+  // if (!auth.user) {
+  //   return <Navigate to="/" replace />;
+  // }
         return (
             <div className="Inventory">
                <Navbar/>

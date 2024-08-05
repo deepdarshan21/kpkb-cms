@@ -72,7 +72,7 @@
 .customer-details {
     justify-content: center; /* Center horizontally */
     align-items: center;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     padding: 20px;
     display: flex;
     margin-top: 100px;
@@ -92,7 +92,7 @@
     border: 1px solid #CCCCCC; /* Add border styles if needed */
     padding: 8px; /* Adjust padding as needed */
     font-size: 16px; 
-    width: 400px;
+    /* width: 400px; */
     size:auto;
 }
 
@@ -166,3 +166,41 @@
     touch-action: none;
     overscroll-behavior: none;
   } */
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  
+  .input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .button {
+    padding: 5px 10px;
+  }
+  
+  .table-container {
+    margin: 20px;
+  }
+  
+  .table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+  }
+  
+  .table th, .table td {
+    border: 1px solid black;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  
+  .message {
+    margin: auto;
+    color: red;
+  }
