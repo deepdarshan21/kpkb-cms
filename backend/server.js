@@ -17,6 +17,7 @@ const verifyRouter = require("./routes/verify.route")
 const forgotRouter = require("./routes/forgot.route")
 const userRouter = require("./routes/user.route")
 const contactRouter = require("./routes/contact.route")
+const customerRouter = require("./routes/customer.route")
 //const {User} = require("./models/canteen.model")
 // const registerRouter = require("./routes/register.route");
 
@@ -43,6 +44,7 @@ app.use("/api/otp" , verifyRouter);
 app.use("/api/forgot" , forgotRouter);
 app.use("/api/user", userRouter);
 app.use("/api/contact" , contactRouter);
+app.use("/api/customer", customerRouter);
 
 
 // Middleware to parse JSON bodies

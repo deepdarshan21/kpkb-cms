@@ -2,6 +2,7 @@
 const Customer = require('../models/customer.model');
 
 const updateCustomerDetails = async (res, req) => {
+    console.log("Check 1");
     try {
         const { 
             firstname,
