@@ -235,8 +235,8 @@ const AddNewInvoice = () => {
       return; // Stop further execution
     }
     const requestData = {
-      invoiceData: invoiceData,
-      userID: authContext.user,
+      ...invoiceData,
+      customerId: data.customerId
     };
     // fetch("http://localhost:5050/api/invoice/sendmail", {
     //   method: "PUT",
@@ -251,7 +251,7 @@ const AddNewInvoice = () => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(invoiceData),
+      body: JSON.stringify(requestData),
     })
       .then(() => {
         alert("Invoice ADDED");
@@ -450,11 +450,12 @@ const AddNewInvoice = () => {
             firstName: data.firstname,
             lastName: data.lastname,
             payLevel: 'Level 7',
-            number: data.phonenumber
+            number: data.phonenumber,
+            customerId: data._id
           })
           setInvoiceData({
             ...invoiceData,
-            customerName: `${data.firstname + data.lastname}`,
+            customerName: `${data.firstname +" "+ data.lastname}`,
             phoneNo: data.phonenumber,
           })
         }
@@ -494,7 +495,7 @@ const AddNewInvoice = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th>Wellfare No</th>
+                  <th>Welfare No</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Pay Level</th>

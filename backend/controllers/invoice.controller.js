@@ -182,8 +182,8 @@ const addInvoice = async (req, res) => {
     totalSales += req.body.itemList[i].quantity * req.body.itemList[i].rate;
     totalCost += req.body.itemList[i].quantity * req.body.itemList[i].costPrice;
   }
-  // console.log(totalCost);
-  // console.log(totalSales);
+  console.log(totalCost);
+  console.log(totalSales);
   const addInvoice = new Invoice({
     userID: req.body.userID,
     invoiceID: req.body.invoiceID,
@@ -191,6 +191,7 @@ const addInvoice = async (req, res) => {
     customerName: req.body.customerName,
     phoneNo: req.body.phoneNo,
     customerEmail: req.body.customerEmail,
+    customerId: req.body.customerId,
     totalAmount: req.body.totalAmount,
     notes: req.body.notes,
     paymentMode: req.body.paymentMode,
@@ -200,6 +201,8 @@ const addInvoice = async (req, res) => {
     totalSales: totalSales,
     totalCostPrice: totalCost
   });
+
+  console.log(addInvoice);
 
   addInvoice.save()
     .then(async(result) => {
