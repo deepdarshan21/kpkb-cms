@@ -309,7 +309,7 @@ const Reports = () => {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Email</th>
+          {/* <th>Phone</th> */}
           <th>Total Sales</th>
         </tr>
       </thead>
@@ -317,7 +317,7 @@ const Reports = () => {
         {topCustomers.map((customer, index) => (
           <tr key={index}>
             <td>{customer.name}</td>
-            <td>{customer.email}</td>
+            {/* <td>{customer.email}</td> */}
             <td>{customer.totalSales}</td>
           </tr>
         ))}
